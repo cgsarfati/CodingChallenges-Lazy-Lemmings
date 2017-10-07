@@ -18,19 +18,23 @@ Find the farthest any single lemming needs to travel for food.
     3
 """
 
-
+# BRUTE FORCE
 def furthest(num_holes, cafes):
     """Find longest distance between a hole and a cafe."""
 
-    # convert # of holes into a list range
-        # 3 --> [0, 1, 2]
+    worst = 0
 
-    # loop through each item in range w/ counter
-    # if current index matches one from cafes list, stop; hold final count value
-    # through other iterations, check if total count > current count
-    # at the end, you'll have the highest value count from all iterations
-    # return that #
+    for hole in range(num_holes):
+        # lookng at all cafes, find distance to hole. pick min distance.
+        dist = min([abs(hole - cafe) for cafe in cafes])
 
+        # compare to longest distance. if dist > worst, replace.
+        worst = max(worst, dist)
+
+    return worst
+
+# BINARY SEARCH
+def furthest_optimized(num_holes, cafes):
 
 if __name__ == '__main__':
     import doctest
